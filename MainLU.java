@@ -52,6 +52,8 @@ public class MainLU {
                 }
             }
         }
+
+
         for (int i = 0; i < n; i++) {
             sum = 0.0;
             for (int k = 0; k < i; k++)
@@ -59,13 +61,15 @@ public class MainLU {
             for (int j = 0; j < n; j++)
                 y[i]=b[i]-sum;
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = n - 1; i >= 0; i--) {
             sum = 0.0;
             for (int k = i + 1; k < n; k++)
                 sum+=U[i][k]*x[k];
             for (int j = 0; j < n; j++)
                 x[i]=(y[i]-sum)/(U[i][i]);
         }
+
+
         System.out.println();
         for (int i = 0; i < n; i++) {
             System.out.println(x[i]);
@@ -77,8 +81,10 @@ public class MainLU {
             }
             System.out.print("inaccuracy is: "+Math.abs(b[i]-sum)+" | ");
         }
+        System.out.println();
 
-        /*for (int i = 0; i < n; i++) {
+
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(L[i][j] + " | ");
             }
@@ -92,16 +98,37 @@ public class MainLU {
             System.out.println();
         }
         System.out.println();
-        */
 
+
+    }
+
+    public static double det(double a[][], int n){
+        int size=n;
+        double arr[][];
+        if (a[0].length>2) {
+            double result = 0;
+            for (int i = 0; i < a[0].length; i++){
+                arr = new double[a[0].length][[a[0].length];
+                for (int j = 0; j < a[0].length; j++){
+                    if (j!=i) {
+                        for (int k = 1; j < a[0].length; j++){
+                            arr[j]=a[j][k];
+                        }
+                    }
+                }
+                result+=det(arr)
+            }
+        }
     }
 }
 
-/*
 
+
+/*
 1 -2 3
 3 1 -1
 2 5 2
+
 
 
  */
