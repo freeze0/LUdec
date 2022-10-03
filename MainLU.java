@@ -38,7 +38,12 @@ public class MainLU {
                 for (int j = 0; j < i; j++)
                     sum += (L[i][j] * U[j][k]);
                 U[i][k] = a[i][k] - sum;
+                if (U[i][k]==0) {
+                    System.out.println("Matrix is not compatible");
+                    System.exit(0);
+                }
             }
+            System.out.println();
             for (int k = i; k < n; k++)
             {
                 if (i == k)
@@ -52,8 +57,6 @@ public class MainLU {
                 }
             }
         }
-
-
         for (int i = 0; i < n; i++) {
             sum = 0.0;
             for (int k = 0; k < i; k++)
@@ -68,12 +71,11 @@ public class MainLU {
             for (int j = 0; j < n; j++)
                 x[i]=(y[i]-sum)/(U[i][i]);
         }
-
-
         System.out.println();
         for (int i = 0; i < n; i++) {
             System.out.println(x[i]);
         }
+        System.out.println();
         for (int i=0; i<n; i++) {
             sum =0.0;
             for (int j=0; j<n; j++){
@@ -82,8 +84,6 @@ public class MainLU {
             System.out.print("inaccuracy is: "+Math.abs(b[i]-sum)+" | ");
         }
         System.out.println();
-
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(L[i][j] + " | ");
@@ -98,11 +98,9 @@ public class MainLU {
             System.out.println();
         }
         System.out.println();
-
-
     }
 
-    public static double det(double a[][], int n){
+    /*public static double det(double a[][], int n){
         int size=n;
         double arr[][];
         if (a[0].length>2) {
@@ -118,8 +116,7 @@ public class MainLU {
                 }
                 result+=det(arr)
             }
-        }
-    }
+        }*/
 }
 
 
@@ -129,6 +126,14 @@ public class MainLU {
 3 1 -1
 2 5 2
 
+1 2 3
+
+1 2 3 4
+2 4 6 8
+1 1 1 1
+1 1 1 1
+
+1 2 1 1
 
 
  */
