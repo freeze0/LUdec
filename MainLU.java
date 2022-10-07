@@ -30,6 +30,22 @@ public class MainLU {
             System.out.println(b[i]);
         }
         System.out.println();
+        double tmpa = 0;
+        double tmpb = 0;
+        for (int ij = 0; ij < n; ij++) {
+            for (int i = 0; i < n - 1; i++) {
+                if (a[i][i] == 0) {
+                    for (int j = 0; j < n; j++) {
+                        tmpa = a[i][j];
+                        a[i][j] = a[i + 1][j];
+                        a[i + 1][j] = tmpa;
+                    }
+                    tmpb = b[i];
+                    b[i] = b[i + 1];
+                    b[i + 1] = tmpb;
+                }
+            }
+        }
         for (int i = 0; i < n; i++)
         {
             for (int k = i; k < n; k++)
@@ -38,12 +54,7 @@ public class MainLU {
                 for (int j = 0; j < i; j++)
                     sum += (L[i][j] * U[j][k]);
                 U[i][k] = a[i][k] - sum;
-                if (U[i][k]==0) {
-                    System.out.println("Matrix is not compatible");
-                    System.exit(0);
-                }
             }
-            System.out.println();
             for (int k = i; k < n; k++)
             {
                 if (i == k)
@@ -55,6 +66,12 @@ public class MainLU {
                         sum += (L[k][j] * U[j][i]);
                     L[k][i] = (a[k][i] - sum) / U[i][i];
                 }
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (U[i][i]==0){
+                System.out.println("Matrix is not compatible");
+                System.exit(0);
             }
         }
         for (int i = 0; i < n; i++) {
@@ -99,24 +116,6 @@ public class MainLU {
         }
         System.out.println();
     }
-
-    /*public static double det(double a[][], int n){
-        int size=n;
-        double arr[][];
-        if (a[0].length>2) {
-            double result = 0;
-            for (int i = 0; i < a[0].length; i++){
-                arr = new double[a[0].length][[a[0].length];
-                for (int j = 0; j < a[0].length; j++){
-                    if (j!=i) {
-                        for (int k = 1; j < a[0].length; j++){
-                            arr[j]=a[j][k];
-                        }
-                    }
-                }
-                result+=det(arr)
-            }
-        }*/
 }
 
 
@@ -134,6 +133,4 @@ public class MainLU {
 1 1 1 1
 
 1 2 1 1
-
-
  */
